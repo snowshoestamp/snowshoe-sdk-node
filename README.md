@@ -9,21 +9,21 @@ You can install `snowshoe-stamp-sdk` via [the npm package](https://www.npmjs.com
 
 # Getting Started
 
-1. To get the app running, you will need to create an app on our site. Go to https://app.snowshoestamp.com/ and Sign In if you have an account or sign up if you don't have one. Once you are logged in, click “New App” to create a new one.
+1. To be able to use this SDK tool you need to create an app first. You can learn how to [HERE](https://snowshoe.readme.io/v3.0/docs/part-1-create-a-snowshoe-application)
 
-2. After you have created the new application look at it's settings and you will find 'API Key 1' and 'API Key 2'. These can both be used to pass through as the needed param `api_key` to get stamp data back from our servers.
+2. Make sure you get the API Key that you will need to run requests. You can learn more about the API Keys [HERE](https://snowshoe.readme.io/v3.0/docs/part-1-create-a-snowshoe-application#get-api-keys)
 
-3. The stamp data passed to our servers is encoded in Base64 and then sent through as form-data. If you use our snowshoe jquery plugin to capture stamp touch point data ( located here: https://cdn.snowshoestamp.com/snowshoe-jquery/0.3.3/jquery.snowshoe.js ) then you don't have to worry about this because the data passed through will already be encoded. In this example we will use mock data of points in Base64 (`W1swLDBdLFszNiwzNl0sWzM2LDBdLFsyMCw0XSxbOCwzNl1d`) to get a stamp return when we send the request.
+3. The stamp data passed to our servers is an array of x,y coordinates. These represent the touch points from the stamp that you are trying to get data for. If you are using our front-end jquery plugin (more info on this located [HERE](https://snowshoe.readme.io/v3.0/docs/maintained-libraries)) to capture stamp touch point data, then you can just pass that data directly through for the request with no need to change.
 
 # Test App
 
-Make a new javascript file named test.js to use. You will need to `'require'` the `snowshoe-stamp-sdk` in the app. We will also use the mock data here for testing and you will need your API Key also for testing. Here is a sample piece of code to use for testing. Copy and add this to the test.js file.
+Make a new javascript file named test.js to use. You will need to `'require'` the `snowshoe-stamp-sdk` in the app. We will also use some mock data the represent the points here for testing and you will need your API Key also for testing. Here is a sample piece of code to use for testing. Copy and add this to the test.js file.
 
 ```javascript
 var Snowshoe = require('snowshoe-stamp-sdk');
 
 var client = new Snowshoe.client('YOUR_API_KEY');
-    var data = "W1swLDBdLFszNiwzNl0sWzM2LDBdLFsyMCw0XSxbOCwzNl1d";
+    var data = "[[264,172],[267,371],[242,286],[69,375],[66,221]]";
 
 client.post(data, function(error, data) {
     if (error) {
@@ -49,7 +49,7 @@ This should print out a status code of 200 and a JSON showing a "serial" of "DEV
 }
 ```
 
-The information returned here is the data about the stamp relating to the points and api key you sent in the request.
+The information returned here is the data about the stamp relating to the points and api key you sent in the request. For more info on stamp data requests and returns go [HERE](https://snowshoe.readme.io/v3.0/docs/part-3-api-request)
 
 # More info
 
