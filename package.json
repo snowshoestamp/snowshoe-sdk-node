@@ -1,6 +1,6 @@
 {
   "name": "snowshoe-stamp-sdk",
-  "version": "3.1.0",
+  "version": "3.0.3",
   "description": "Node SDK Client for the Snowshoe API",
   "author": "Snowshoe",
   "contributors": [
